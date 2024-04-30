@@ -1,0 +1,75 @@
+[
+  {
+    "title": "lipsum.com",
+    "content": "https://www.lipsum.com",
+    "color": "#FFC0CB",
+    "timeCreated": "21.01.2024 10:04"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Curabitur pellentesque egestas eleifend. Ut tempus viverra tellus, id laoreet lectus aliquet vitae. Mauris tincidunt dolor eu ex venenatis, nec pretium tortor lobortis. Nullam ac neque blandit, lobortis dolor a, condimentum eros. In hac habitasse platea dictumst.",
+    "color": "#FFFFFF",
+    "timeCreated": "21.01.2024 10:03"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Curabitur pellentesque egestas eleifend. Ut tempus viverra tellus, id laoreet lectus aliquet vitae.",
+    "color": "#FFD700",
+    "timeCreated": "21.01.2024 10:05"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Cras a libero lacinia, vulputate neque eleifend, aliquam nunc. Aliquam metus justo, mattis nec elit sed, aliquam auctor elit. ",
+    "color": "#90EE90",
+    "timeCreated": "21.01.2024 10:06"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Nullam et lacus vel libero vehicula suscipit ut et sem.",
+    "color": "#ADD8E6",
+    "timeCreated": "21.01.2024 10:06"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium pellentesque libero, non tempus dolor sagittis et. Donec quis velit nunc. Quisque consequat mollis dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam in iaculis ipsum. Nulla ullamcorper ipsum at lacus congue dignissim. Integer at mattis magna. Morbi dictum, diam et hendrerit viverra, turpis purus finibus nulla, rutrum iaculis dolor urna rhoncus nulla.",
+    "color": "#FFA07A",
+    "timeCreated": "21.01.2024 10:00"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Mauris vitae viverra orci. Sed nec enim vel odio aliquet pharetra. Nunc feugiat mauris a orci tristique, a ornare odio fringilla. Morbi tincidunt vehicula nulla, non aliquam purus semper sed.",
+    "color": "#20B2AA",
+    "timeCreated": "21.01.2024 10:12"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "https://www.lipsum.com/",
+    "color": "#87CEFA",
+    "timeCreated": "21.01.2024 10:15"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Nullam congue vel purus eu pharetra. Mauris vulputate diam feugiat diam viverra feugiat. Cras commodo nisi tellus, sit amet malesuada est scelerisque eu.",
+    "color": "#FFFFFF",
+    "timeCreated": "21.01.2024 10:16"
+  },
+  {
+    "title": "Lorem Ipsum",
+    "content": "Mauris vitae viverra orci. Sed nec enim vel odio aliquet pharetra. Nunc feugiat mauris a orci tristique, a ornare odio fringilla. Morbi tincidunt vehicula nulla, non aliquam purus semper sed. Nullam et lacus vel libero vehicula suscipit ut et sem. In ultricies facilisis ultricies. Mauris vitae nisl ullamcorper, venenatis nisi vitae, gravida diam. Proin vel quam dolor. ",
+    "color": "#FFC0CB",
+    "timeCreated": "21.01.2024 10:18"
+  },
+  {
+    "title": "LIpsum",
+    "content": "https://www.lipsum.com/",
+    "color": "#FFD700",
+    "timeCreated": "21.01.2024 10:19"
+  },
+  {
+    "title": "semper sed",
+    "content": "Nullam et lacus vel libero vehicula suscipit ut et sem. In ultricies facilisis ultricies. Mauris vitae nisl ullamcorper, venenatis nisi vitae, gravida diam.",
+    "color": "#90EE90",
+    "timeCreated": "21.01.2024 10:25"
+  }
+
+]
