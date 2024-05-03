@@ -110,9 +110,9 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 		const loading: Ref<ApiLoadingState> = apiStateLoadingHandler.addApiState(loadingState) as Ref<ApiLoadingState>
 
 		/**
-		 * Handle the new loadingState in the globalStates
+		 * Handle the new error State in the globalStates
 		 */
-		const error: Ref<ApiErrorState> = apiStateLoadingHandler.addApiState(errorState) as Ref<ApiErrorState>
+		const error: Ref<ApiErrorState> = apiStateErrorHandler.addApiState(errorState) as Ref<ApiErrorState>
 
 		const data: Ref<Array<TData> | TData | undefined> = apiStateDataHandler.addApiState(dataWithKey) as Ref<
 			Array<TData> | TData | undefined
