@@ -131,10 +131,12 @@
 			Submit
 		</button>
 
-		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="error">{{ error?.error?.message }}</div>
+		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="error">
+			{{ error?.error?.message }}
+		</div>
 		<!-- <div class="mt-4 text-sm text-white dark:text-white-400" v-if="data">{{ data.message }}</div> -->
-		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="data?.length && !error?.error">
-			{{ data[data.length - 1].name }}
+		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="data?.length && !error?.error?.message">
+			{{ data[data.length - 1]?.name }}
 		</div>
 
 		<div class="mt-4 text-sm flex justify-center text-white dark:text-white-400" v-show="loading.isLoading">
@@ -165,7 +167,7 @@
 <script lang="ts" setup>
 import { defineProps, onMounted, watch } from "vue"
 import { ref } from "vue"
-import { useCardStore } from "../../stores/useCardStore"
+import { useCardStore } from "../../stores/useCardStoreUpdated"
 import { useRoute } from "vue-router"
 
 const props = defineProps({
@@ -197,6 +199,8 @@ const {
 } = cardStore.useFetchCards({
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
+	dataKey: "data",
+
 	// errorKey: "error",
 	// loadingKey: "loading",
 })
@@ -204,10 +208,11 @@ const {
 const { _post: postData } = cardStore.useCreateCard({
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
-
 	// errorKey: "error",
 	// loadingKey: "loading",
 })
+
+console.log("error", error)
 
 const getApiData = async () => {
 	await getData({ url: props?.urlId || "", parameters: { key: "name", value: `${route.query.search || ""}` } })

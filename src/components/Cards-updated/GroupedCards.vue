@@ -46,7 +46,6 @@
 		<div v-else class="flex justify-center items-center">
 			<Card
 				title="Searched Plan"
-				key="free"
 				price="0"
 				features="5"
 				storage="5GB"
@@ -62,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-import Card from "@/components/Cards/Card.vue"
+import Card from "@/components/Cards-updated/Card.vue"
 import { onMounted } from "vue"
 import { useRoute } from "vue-router"
 

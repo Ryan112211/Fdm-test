@@ -1,9 +1,9 @@
 import type { ApiBuilder, ApiBuilderConfig } from "../interfaces/api-builder"
-import { ref, type Ref } from "vue"
+import { type Ref } from "vue"
 import { useDefaultApiStateHandler } from "./api-state-handler"
 import { nanoid } from "nanoid"
 import { ApiCallComposableMethods } from "../enums/api-methods"
-import type { ApiErrorState, ApiLoadingState } from "../interfaces/api-states"
+import type { ApiDataState, ApiErrorState, ApiLoadingState } from "../interfaces/api-states"
 import {
 	ApiDeleteParameters,
 	ApiGetParameters,
@@ -23,6 +23,7 @@ import { AxiosError } from "axios"
 
 const defaultApiStateLoadingHandler = useDefaultApiStateHandler()
 const defaultApiStateErrorHandler = useDefaultApiStateHandler()
+const defaultApiStateDataHandler = useDefaultApiStateHandler()
 
 export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData> => {
 	const instance = config.instance
@@ -31,6 +32,7 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 
 	const apiStateLoadingHandler = config.apiStateLoadingHandler ?? defaultApiStateLoadingHandler
 	const apiStateErrorHandler = config.apiStateErrorHandler ?? defaultApiStateErrorHandler
+	const apiStateDataHandler = config.apiStateDataHandler ?? defaultApiStateDataHandler
 
 	if (!instance) throw `AxiosInstance of ${typeof useApiBuilder.name} is undefined.`
 
@@ -88,10 +90,19 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 		/**
 		 * Create errorState object before proceeding.
 		 */
-		// const errorState: ApiErrorState = {
-		// 	stateKey: options.errorKey ?? nanoid(),
-		// 	error: { value: undefined },
-		// }
+		const errorState: ApiErrorState = {
+			stateKey: options.errorKey ?? nanoid(),
+			error: { value: undefined },
+		}
+
+		/**
+		 * Create dataState object before proceeding.
+		 */
+
+		const dataWithKey: ApiDataState<any> = {
+			stateKey: options.dataKey ?? nanoid(),
+			data: dataState?.value ?? undefined,
+		}
 
 		/**
 		 * Handle the new loadingState in the globalStates
@@ -101,9 +112,11 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 		/**
 		 * Handle the new loadingState in the globalStates
 		 */
-		const error: Ref<ApiErrorState> = apiStateLoadingHandler.addApiState(loadingState) as Ref<ApiErrorState>
+		const error: Ref<ApiErrorState> = apiStateLoadingHandler.addApiState(errorState) as Ref<ApiErrorState>
 
-		const data: Ref<Array<TData> | TData | undefined> = dataState ?? ref<Array<TData>>()
+		const data: Ref<Array<TData> | TData | undefined> = apiStateDataHandler.addApiState(dataWithKey) as Ref<
+			Array<TData> | TData | undefined
+		>
 
 		return {
 			loading,
@@ -112,16 +125,12 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 		}
 	}
 
-	const useGet = (
-		options: ApiComposableOptions = {},
-		dataState?: Ref<Array<TData | TData>>
-	): ApiGetComposable<TData> => {
+	const useGet = (options: ApiComposableOptions = {}, dataState?: Ref<Array<TData> | TData>): ApiGetComposable<any> => {
 		const { loading, data, error } = useRequest(options, dataState)
 
 		const _get = async (params?: ApiGetParameters) => {
-			error.value.error = undefined
-
 			try {
+				error.value.error = undefined
 				loading.value.isLoading = true
 				apiStateLoadingHandler.upsertApiState(loading.value)
 
@@ -131,11 +140,14 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 				data.value = resData
 				return Promise.resolve(data.value)
 			} catch (e: AxiosError | any) {
+				console.log("i came here", e)
 				error.value.error = e
-				return Promise.resolve(error.value.error)
+
+				return Promise.resolve(error.value)
 			} finally {
 				loading.value.isLoading = false
 				apiStateLoadingHandler.upsertApiState(loading.value)
+				apiStateErrorHandler.upsertApiState(error.value)
 			}
 		}
 
