@@ -208,8 +208,6 @@ const {
 const { _post: postData } = cardStore.useCreateCard({
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
-	// errorKey: "error",
-	// loadingKey: "loading",
 })
 
 console.log("error", error)
