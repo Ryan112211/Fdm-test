@@ -140,7 +140,6 @@ export const useApiBuilder = <TData>(config: ApiBuilderConfig): ApiBuilder<TData
 				data.value = resData
 				return Promise.resolve(data.value)
 			} catch (e: AxiosError | any) {
-				console.log("i came here", e)
 				error.value.error = e
 
 				return Promise.resolve(error.value)

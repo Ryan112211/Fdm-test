@@ -62,12 +62,7 @@
 
 <script lang="ts" setup>
 import Card from "@/components/Cards-updated/Card.vue"
-import { onMounted } from "vue"
 import { useRoute } from "vue-router"
 
 const route = useRoute()
-
-onMounted(() => {
-	console.log(route.query)
-})
 </script>
