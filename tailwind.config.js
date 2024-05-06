@@ -5,5 +5,5 @@ export default {
 		extend: {},
 	},
 	plugins: [],
-	safelist: ["text-red-500"],
+	safelist: ["text-red-500", "hover", "active", "focus", "visited", "focus-visible"],
 }
