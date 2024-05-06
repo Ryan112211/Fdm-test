@@ -133,7 +133,7 @@
 
 		<div
 			class="mt-4 text-lg font-bold text-white dark:text-white-400"
-			v-bind:class="{ 'text-red-500': errorMessage }"
+			:class="{ 'text-red-500': errorMessage }"
 			v-show="errorMessage"
 		>
 			ApiError: {{ errorMessage }}
