@@ -13,11 +13,6 @@ const routes: Array<RouteRecordRaw> = [
 		name: "Updated",
 		component: Updated,
 	},
-	// {
-	// 	path: "/:pathMatch(.*)*",
-	// 	name: "NotFound",
-	// 	component: () => import("../views/NotFound.vue"),
-	// },
 ]
 
 const router = createRouter({
