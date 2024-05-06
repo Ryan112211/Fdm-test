@@ -131,10 +131,14 @@
 			Submit
 		</button>
 
-		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="error">
+		<div
+			class="mt-4 text-lg text-white dark:text-white-400"
+			v-bind:class="{ 'text-red-500': error?.error }"
+			v-if="error?.error"
+		>
 			{{ error?.error?.message }}
 		</div>
-		<!-- <div class="mt-4 text-sm text-white dark:text-white-400" v-if="data">{{ data.message }}</div> -->
+
 		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="data?.length && !error?.error?.message">
 			{{ data[data.length - 1]?.name }}
 		</div>
@@ -200,17 +204,12 @@ const {
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
 	dataKey: "data",
-
-	// errorKey: "error",
-	// loadingKey: "loading",
 })
 
 const { _post: postData } = cardStore.useCreateCard({
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
 })
-
-console.log("error", error)
 
 const getApiData = async () => {
 	await getData({ url: props?.urlId || "", parameters: { key: "name", value: `${route.query.search || ""}` } })

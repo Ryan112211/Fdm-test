@@ -131,9 +131,15 @@
 			Submit
 		</button>
 
-		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="error">{{ error?.error?.message }}</div>
-		<!-- <div class="mt-4 text-sm text-white dark:text-white-400" v-if="data">{{ data.message }}</div> -->
-		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="data?.length && !error?.error">
+		<div
+			class="mt-4 text-lg text-white dark:text-white-400"
+			v-bind:class="{ 'text-red-500': error?.error }"
+			v-if="error?.error"
+		>
+			{{ error?.error?.message }}
+		</div>
+
+		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="data && !error?.error">
 			{{ data[data.length - 1].name }}
 		</div>
 
@@ -197,8 +203,6 @@ const {
 } = cardStore.useFetchCards({
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
-	// errorKey: "error",
-	// loadingKey: "loading",
 })
 
 const { _post: postData } = cardStore.useCreateCard({
