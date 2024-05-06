@@ -132,18 +132,18 @@
 		</button>
 
 		<div
-			class="mt-4 text-lg text-white dark:text-white-400"
-			v-bind:class="{ 'text-red-500': error?.error }"
-			v-if="error?.error"
+			class="mt-4 text-lg font-bold text-white dark:text-white-400"
+			v-bind:class="{ 'text-red-500': errorMessage }"
+			v-show="errorMessage"
 		>
-			{{ error?.error?.message }}
+			ApiError: {{ errorMessage }}
 		</div>
 
-		<div class="mt-4 text-lg text-white dark:text-white-400" v-if="data?.length && !error?.error?.message">
-			{{ data[data.length - 1]?.name }}
+		<div class="mt-4 text-lg font-bold text-white dark:text-white-400" v-if="lastName && !errorMessage">
+			ApiData: {{ lastName }}
 		</div>
 
-		<div class="mt-4 text-sm flex justify-center text-white dark:text-white-400" v-show="loading.isLoading">
+		<div class="mt-4 text-sm flex justify-center text-white dark:text-white-400" v-show="isLoading">
 			<div role="status">
 				<svg
 					aria-hidden="true"
@@ -169,7 +169,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, onMounted, watch } from "vue"
+import { computed, defineProps, onMounted, watch } from "vue"
 import { ref } from "vue"
 import { useCardStore } from "../../stores/useCardStoreUpdated"
 import { useRoute } from "vue-router"
@@ -210,6 +210,11 @@ const { _post: postData } = cardStore.useCreateCard({
 	errorKey: props.errorKey,
 	loadingKey: props.loadingKey,
 })
+
+const isLoading = computed(() => loading.value.isLoading)
+const errorMessage = computed(() => error.value.error?.message)
+const dataLength = computed(() => data.value?.length)
+const lastName = computed(() => data.value?.[dataLength.value - 1]?.name)
 
 const getApiData = async () => {
 	await getData({ url: props?.urlId || "", parameters: { key: "name", value: `${route.query.search || ""}` } })
