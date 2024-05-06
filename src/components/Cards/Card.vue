@@ -131,9 +131,7 @@
 			Submit
 		</button>
 
-		<div class="mt-4 text-lg font-bold text-white dark:text-white-400" :class="errorStyle" v-show="errorMessage">
-			ApiError: {{ errorMessage }}
-		</div>
+		<div class="mt-4 text-lg font-bold text-red-500" v-show="errorMessage">ApiError: {{ errorMessage }}</div>
 
 		<div class="mt-4 text-lg font-bold text-white dark:text-white-400" v-if="lastName && !errorMessage">
 			ApiData: {{ lastName }}
@@ -225,13 +223,6 @@ const isLoading = computed(() => loading.value.isLoading)
 const errorMessage = computed(() => error.value.error?.message)
 const dataLength = computed(() => data.value?.length)
 const lastName = computed(() => data.value?.[dataLength.value - 1]?.name)
-
-const errorStyle = computed(() => {
-	return {
-		active: errorMessage,
-		"text-red-500": errorMessage,
-	}
-})
 
 onMounted(async () => {
 	await getApiData()

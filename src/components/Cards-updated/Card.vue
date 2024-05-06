@@ -131,13 +131,7 @@
 			Submit
 		</button>
 
-		<div
-			class="mt-4 text-lg font-bold text-white dark:text-white-400"
-			:class="{ 'text-red-500': errorMessage }"
-			v-show="errorMessage"
-		>
-			ApiError: {{ errorMessage }}
-		</div>
+		<div class="mt-4 text-lg font-bold text-red-500" v-show="errorMessage">ApiError: {{ errorMessage }}</div>
 
 		<div class="mt-4 text-lg font-bold text-white dark:text-white-400" v-if="lastName && !errorMessage">
 			ApiData: {{ lastName }}
