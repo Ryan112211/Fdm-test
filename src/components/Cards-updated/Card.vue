@@ -168,6 +168,8 @@
 	</div>
 </template>
 
+<style scoped></style>
+
 <script lang="ts" setup>
 import { computed, defineProps, onMounted, watch } from "vue"
 import { ref } from "vue"
