@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="w-full max-w-sm p-4 m-4 h-[800px] bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+		class="w-full p-4 m-4 h-[800px] bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
 	>
 		<h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">{{ title }}</h5>
 		<div class="flex items-baseline text-gray-900 dark:text-white">
@@ -126,13 +126,13 @@
 		<button
 			@click="handlePost"
 			type="button"
-			class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+			:disabled="!inputValue.trim()"
+			class="mt-4 text-white bg-blue-700 group hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center disabled:opacity-50 disabled:hover:bg-blue-700 disabled:dark:hover:bg-blue-600"
 		>
 			Submit
 		</button>
 
 		<div class="mt-4 text-lg font-bold text-red-500" v-show="errorMessage">ApiError: {{ errorMessage }}</div>
-
 		<div class="mt-4 text-lg font-bold text-white dark:text-white-400" v-if="lastName && !errorMessage">
 			ApiData: {{ lastName }}
 		</div>
@@ -190,6 +190,7 @@ const props = defineProps({
 const cardStore = useCardStore()
 const route = useRoute()
 const inputValue = ref("")
+console.log("hello", inputValue.value)
 const {
 	data,
 	error,

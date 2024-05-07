@@ -1,6 +1,6 @@
 <template>
-	<div class="container px-4">
-		<div v-if="!route.query.search" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+	<div class="px-4 flex justify-center items-center">
+		<div v-if="!route.query.search" class="grid grid-cols-3 gap-4">
 			<Card
 				title="Free Plan"
 				key="free"
